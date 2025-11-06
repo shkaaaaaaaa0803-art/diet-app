@@ -2,7 +2,7 @@ import google.generativeai as genai
 import os
 from flask import Flask, render_template, request
 
-genai.configure(api_key="AIzaSyCRAQvVtU9IGprmYU4TNr9CI16f952asKM")
+genai.configure(api_key="")
 model=genai.GenerativeModel("gemini-1.0-pro")
 
 app = Flask(__name__)
