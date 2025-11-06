@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 genai.configure(api_key="")
-model=genai.GenerativeModel("gemini-1.0-pro")
+model=genai.GenerativeModel("gemini-2.5-flash")
 
 app = Flask(__name__)
 
