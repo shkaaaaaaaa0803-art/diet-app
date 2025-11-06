@@ -1,80 +1,113 @@
-
-    
-   
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Details</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Diet App</title>
   <style>
+    :root {
+      --bg-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80');
+      --primary-color: #1f2937;
+      --accent-color: #2e8b57; /* Green */
+      --input-border: #6bbf59; /* Greenish outline */
+      --input-focus: #3cb371;
+      --radius: 8px;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #90ee90, #6dd5ed, #89b5ff);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
     }
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 40px 50px;
-      border-radius: 15px;
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 50px 60px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      width: 400px;
+      max-width: 90%;
       text-align: center;
-      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
     }
+
     h2 {
-      color: #2e8b57;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+      font-size: 24px;
     }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
     input[type="text"] {
-      width: 250px;
-      height: 30px;
-      border: 2px solid #2e8b57;
-      border-radius: 5px;
-      padding: 5px;
-      font-size: 16px;
-      margin-bottom: 15px;
+      border: 2px solid var(--input-border);
+      border-radius: var(--radius);
+      padding: 10px;
+      font-size: 15px;
+      width: 100%;
+      transition: border-color 0.3s ease;
     }
+
+    input[type="text"]:focus {
+      border-color: var(--input-focus);
+      outline: none;
+    }
+
+    #name { width: 100%; height: 36px; }
+    #height { width: 90%; height: 30px; }
+    #weight { width: 85%; height: 28px; }
+
     button {
-      background-color: #2e8b57;
+      background-color: var(--accent-color);
       color: white;
       border: none;
-      border-radius: 5px;
-      padding: 8px 16px;
+      border-radius: var(--radius);
+      padding: 12px 24px;
       font-size: 16px;
       cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
     }
+
     button:hover {
-      background-color: #3cb371;
+      background-color: var(--input-focus);
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Enter Your Details</h2>
-    <form id="detailsForm">
-      <input type="text" id="name" placeholder="Enter your name" required><br>
-      <input type="text" id="height" placeholder="Enter your height (cm)" required><br>
-      <input type="text" id="weight" placeholder="Enter your weight (kg)" required><br>
-      <button type="button" onclick="goToFoodPage()">Next</button>
+  <div class="login-container">
+    <h2>Welcome to Diet App</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="height">Height</label>
+        <input type="text" id="height" placeholder="Enter your height (cm)" />
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="text" id="weight" placeholder="Enter your weight (kg)" />
+      </div>
+      <button type="submit">Submit</button>
     </form>
   </div>
-
-  <script>
-    function goToFoodPage() {
-      const name = document.getElementById('name').value;
-      const height = document.getElementById('height').value;
-      const weight = document.getElementById('weight').value;
-
-      if(name && height && weight) {
-        const url = `food.html?name=${encodeURIComponent(name)}&height=${encodeURIComponent(height)}&weight=${encodeURIComponent(weight)}`;
-        window.location.href = url;
-      } else {
-        alert('Please fill all fields!');
-      }
-    }
-  </script>
 </body>
 </html>
-
