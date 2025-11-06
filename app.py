@@ -1,6 +1,8 @@
 import google.generativeai as genai
 import os
 from flask import Flask, render_template, request
+from dotenv import load_dotenv
+load_dotenv()
 
 genai.configure(api_key="")
 model=genai.GenerativeModel("gemini-1.0-pro")
