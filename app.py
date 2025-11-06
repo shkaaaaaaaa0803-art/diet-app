@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 from dotenv import load_dotenv
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key="GEMINI_API_KEY")
 model=genai.GenerativeModel("gemini-2.5-flash")
 
 app = Flask(__name__)
