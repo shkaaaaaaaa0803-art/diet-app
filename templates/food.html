@@ -1,79 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meal Entry</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #6dd5ed, #90ee90);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      margin: 0;
+      justify-content: center;
     }
+
+    .page-title {
+      font-size: 56px;
+      font-weight: bold;
+      color: #2e8b57;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+    }
+
     .form-container {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 40px 50px;
-      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
       text-align: center;
-      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+      width: 700px;
+      max-width: 90%;
     }
+
     h2 {
       color: #2e8b57;
+      font-size: 26px;
+      margin-bottom: 20px;
     }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin: 12px 0 5px;
+      color: #2e8b57;
+    }
+
     input[type="text"] {
-      width: 250px;
-      height: 30px;
+      width: 100%;
+      height: 36px;
       border: 2px solid #2e8b57;
-      border-radius: 5px;
-      padding: 5px;
-      margin-bottom: 15px;
-      font-size: 16px;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 15px;
     }
+
+    .calories-box {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #e8f5e9;
+      border-left: 5px solid #2e8b57;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .calories-box h3 {
+      margin-top: 0;
+      color: #2e8b57;
+      font-size: 18px;
+    }
+
     button {
       background-color: #2e8b57;
       color: white;
       border: none;
-      border-radius: 5px;
-      padding: 8px 16px;
+      border-radius: 6px;
+      padding: 10px 20px;
       font-size: 16px;
       cursor: pointer;
+      width: 100%;
+      margin-top: 18px;
     }
+
     button:hover {
       background-color: #3cb371;
     }
   </style>
 </head>
 <body>
+  <div class="page-title">Enter your meal</div>
+
   <div class="form-container">
-    <h2>Enter Your Meals</h2>
-    <form id="mealForm">
-      <input type="text" id="breakfast" placeholder="Enter your breakfast"><br>
-      <input type="text" id="lunch" placeholder="Enter your lunch"><br>
-      <input type="text" id="snacks" placeholder="Enter your snacks"><br>
-      <input type="text" id="dinner" placeholder="Enter your dinner"><br>
-      <button type="button" onclick="goToResult()">Get My Diet Chart</button>
+    <form method="POST" action="/analyze">
+      <label for="breakfast">Breakfast</label>
+      <input type="text" id="breakfast" name="breakfast" required />
+
+      <label for="lunch">Lunch</label>
+      <input type="text" id="lunch" name="lunch" required />
+
+      <label for="snacks">Snacks</label>
+      <input type="text" id="snacks" name="snacks" required />
+
+      <label for="dinner">Dinner</label>
+      <input type="text" id="dinner" name="dinner" required />
+
+      <div class="calories-box">
+        <h3>🧮 Calories Counter</h3>
+        <p>Estimate your total daily calories based on your meals.</p>
+        <label for="calories">Total Calories</label>
+        <input type="text" id="calories" name="calories" placeholder="e.g. 1800" />
+      </div>
+
+      <!-- Hidden fields to carry over user info from login -->
+      <input type="hidden" name="name" value="{{ name }}">
+      <input type="hidden" name="height" value="{{ height }}">
+      <input type="hidden" name="weight" value="{{ weight }}">
+
+      <label for="goal">Health Goal</label>
+      <input type="text" id="goal" name="goal" />
+
+      <button type="submit">Get My Diet Chart</button>
     </form>
   </div>
-
-  <script>
-    function goToResult() {
-      const params = new URLSearchParams(window.location.search);
-      const name = params.get("name");
-      const height = params.get("height");
-      const weight = params.get("weight");
-
-      const breakfast = document.getElementById("breakfast").value;
-      const lunch = document.getElementById("lunch").value;
-      const snacks = document.getElementById("snacks").value;
-      const dinner = document.getElementById("dinner").value;
-
-      const url = `result.html?name=${encodeURIComponent(name)}&height=${encodeURIComponent(height)}&weight=${encodeURIComponent(weight)}&breakfast=${encodeURIComponent(breakfast)}&lunch=${encodeURIComponent(lunch)}&snacks=${encodeURIComponent(snacks)}&dinner=${encodeURIComponent(dinner)}`;
-      window.location.href = url;
-    }
-  </script>
 </body>
 </html>
