@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Entry</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #6dd5ed, #90ee90);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px 50px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    h2 {
+      color: #2e8b57;
+    }
+    input[type="text"] {
+      width: 250px;
+      height: 30px;
+      border: 2px solid #2e8b57;
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3cb371;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Enter Your Meals</h2>
+    <form id="mealForm">
+      <input type="text" id="breakfast" placeholder="Enter your breakfast"><br>
+      <input type="text" id="lunch" placeholder="Enter your lunch"><br>
+      <input type="text" id="snacks" placeholder="Enter your snacks"><br>
+      <input type="text" id="dinner" placeholder="Enter your dinner"><br>
+      <button type="button" onclick="goToResult()">Get My Diet Chart</button>
+    </form>
+  </div>
+
+  <script>
+    function goToResult() {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name");
+      const height = params.get("height");
+      const weight = params.get("weight");
+
+      const breakfast = document.getElementById("breakfast").value;
+      const lunch = document.getElementById("lunch").value;
+      const snacks = document.getElementById("snacks").value;
+      const dinner = document.getElementById("dinner").value;
+
+      const url = `result.html?name=${encodeURIComponent(name)}&height=${encodeURIComponent(height)}&weight=${encodeURIComponent(weight)}&breakfast=${encodeURIComponent(breakfast)}&lunch=${encodeURIComponent(lunch)}&snacks=${encodeURIComponent(snacks)}&dinner=${encodeURIComponent(dinner)}`;
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
