@@ -1,17 +1,20 @@
+
+    
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meal Entry</title>
+  <title>User Details</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #6dd5ed, #90ee90);
-      height: 100vh;
+      background: linear-gradient(to bottom right, #90ee90, #6dd5ed, #89b5ff);
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
       margin: 0;
     }
     .form-container {
@@ -30,8 +33,8 @@
       border: 2px solid #2e8b57;
       border-radius: 5px;
       padding: 5px;
-      margin-bottom: 15px;
       font-size: 16px;
+      margin-bottom: 15px;
     }
     button {
       background-color: #2e8b57;
@@ -49,31 +52,29 @@
 </head>
 <body>
   <div class="form-container">
-    <h2>Enter Your Meals</h2>
-    <form id="mealForm">
-      <input type="text" id="breakfast" placeholder="Enter your breakfast"><br>
-      <input type="text" id="lunch" placeholder="Enter your lunch"><br>
-      <input type="text" id="snacks" placeholder="Enter your snacks"><br>
-      <input type="text" id="dinner" placeholder="Enter your dinner"><br>
-      <button type="button" onclick="goToResult()">Get My Diet Chart</button>
+    <h2>Enter Your Details</h2>
+    <form id="detailsForm">
+      <input type="text" id="name" placeholder="Enter your name" required><br>
+      <input type="text" id="height" placeholder="Enter your height (cm)" required><br>
+      <input type="text" id="weight" placeholder="Enter your weight (kg)" required><br>
+      <button type="button" onclick="goToFoodPage()">Next</button>
     </form>
   </div>
 
   <script>
-    function goToResult() {
-      const params = new URLSearchParams(window.location.search);
-      const name = params.get("name");
-      const height = params.get("height");
-      const weight = params.get("weight");
+    function goToFoodPage() {
+      const name = document.getElementById('name').value;
+      const height = document.getElementById('height').value;
+      const weight = document.getElementById('weight').value;
 
-      const breakfast = document.getElementById("breakfast").value;
-      const lunch = document.getElementById("lunch").value;
-      const snacks = document.getElementById("snacks").value;
-      const dinner = document.getElementById("dinner").value;
-
-      const url = `result.html?name=${encodeURIComponent(name)}&height=${encodeURIComponent(height)}&weight=${encodeURIComponent(weight)}&breakfast=${encodeURIComponent(breakfast)}&lunch=${encodeURIComponent(lunch)}&snacks=${encodeURIComponent(snacks)}&dinner=${encodeURIComponent(dinner)}`;
-      window.location.href = url;
+      if(name && height && weight) {
+        const url = `food.html?name=${encodeURIComponent(name)}&height=${encodeURIComponent(height)}&weight=${encodeURIComponent(weight)}`;
+        window.location.href = url;
+      } else {
+        alert('Please fill all fields!');
+      }
     }
   </script>
 </body>
 </html>
+
