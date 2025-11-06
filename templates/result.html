@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Diet Chart</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #90ee90, #6dd5ed);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .result-container {
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 40px 60px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-      width: 70%;
-    }
-    h2 {
-      color: #2e8b57;
-    }
-    ul {
-      text-align: left;
-      font-size: 17px;
-    }
-    p {
-      font-size: 18px;
-    }
-    .include-box {
-      background-color: #e8f5e9;
-      border-left: 5px solid #2e8b57;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-    }
-    .avoid-box {
-      background-color: #ffebee;
-      border-left: 5px solid #d32f2f;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Diet Chart</title>
+    <style>
+        :root {
+            --primary: #2e8b57;
+            --danger: #d32f2f;
+            --bg-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80');
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --include-bg: #e8f5e9;
+            --avoid-bg: #ffebee;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .result-container {
+            background-color: var(--card-bg);
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 700px;
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        ul {
+            font-size: 17px;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        .include-box,
+        .avoid-box {
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .include-box {
+            background-color: var(--include-bg);
+            border-left: 6px solid var(--primary);
+        }
+
+        .avoid-box {
+            background-color: var(--avoid-bg);
+            border-left: 6px solid var(--danger);
+        }
+
+        .nutrients {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .nutrients img {
+            width: 60px;
+            height: 60px;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="result-container">
-    <h2>Your Personalized Diet Chart</h2>
-    <div id="userDetails"></div>
-    <div id="dietSuggestion"></div>
-  </div>
+    <div class="result-container">
+        <h2>Your Personalized Diet Chart</h2>
+        <div id="userDetails">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Height:</strong> {{ height }} cm</p>
+            <p><strong>Weight:</strong> {{ weight }} kg</p>
+            <p><strong>Breakfast:</strong> {{ breakfast }}</p>
+            <p><strong>Lunch:</strong> {{ lunch }}</p>
+            <p><strong>Snacks:</strong> {{ snacks }}</p>
+            <p><strong>Dinner:</strong> {{ dinner }}</p>
+        </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const name = params.get("name");
-    const height = params.get("height");
-    const weight = params.get("weight");
-    const breakfast = params.get("breakfast");
-    const lunch = params.get("lunch");
-    const snacks = params.get("snacks");
-    const dinner = params.get("dinner");
-
-    document.getElementById("userDetails").innerHTML = `
-      <p><b>Name:</b> ${name}</p>
-      <p><b>Height:</b> ${height} cm</p>
-      <p><b>Weight:</b> ${weight} kg</p>
-      <p><b>Breakfast:</b> ${breakfast}</p>
-      <p><b>Lunch:</b> ${lunch}</p>
-      <p><b>Snacks:</b> ${snacks}</p>
-      <p><b>Dinner:</b> ${dinner}</p>
-    `;
-
-    let include = [];
-    let avoid = [];
-    const allFood = `${breakfast} ${lunch} ${snacks} ${dinner}`.toLowerCase();
-
-    if (allFood.includes("fried") || allFood.includes("burger") || allFood.includes("pizza") || allFood.includes("chips")) {
-      avoid.push("Fried and oily foods 🍟");
-      include.push("Steamed or baked alternatives 🥗");
-    }
-
-    if (allFood.includes("sugar") || allFood.includes("cake") || allFood.includes("sweet")) {
-      avoid.push("Excess sugar and sweets 🍰");
-      include.push("Natural fruits like apple, banana, and berries 🍎🍌");
-    }
-
-    if (allFood.includes("rice")) {
-      include.push("Try switching to brown rice or millets 🍚");
-    }
-
-    if (allFood.includes("salad") || allFood.includes("fruits") || allFood.includes("vegetable")) {
-      include.push("Great job including healthy greens 🥦");
-    } else {
-      include.push("Add more vegetables and fruits to your meals 🥗");
-    }
-
-    document.getElementById("dietSuggestion").innerHTML = `
-      <div class="include-box">
-        <h3>✅ Foods to Include:</h3>
-        <ul>${include.map(item => `<li>${item}</li>`).join("")}</ul>
-      </div>
-      <div class="avoid-box">
-        <h3>🚫 Foods to Avoid:</h3>
-        <ul>${avoid.length ? avoid.map(item => `<li>${item}</li>`).join("") : "<li>No major foods to avoid 👍</li>"}</ul>
-      </div>
-    `;
-  </script>
+        <div id="dietSuggestion">
+            <pre>{{ feedback }}</pre>
+        </div>
+    </div>
 </body>
+
 </html>

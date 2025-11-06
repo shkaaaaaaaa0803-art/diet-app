@@ -1,113 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Diet App</title>
-  <style>
-    :root {
-      --bg-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80');
-      --primary-color: #1f2937;
-      --accent-color: #2e8b57; /* Green */
-      --input-border: #6bbf59; /* Greenish outline */
-      --input-focus: #3cb371;
-      --radius: 8px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Diet App</title>
+    <style>
+        :root {
+            --bg-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=80');
+            --primary-color: #1f2937;
+            --accent-color: #2e8b57;
+            /* Green */
+            --input-border: #6bbf59;
+            /* Greenish outline */
+            --input-focus: #3cb371;
+            --radius: 8px;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: var(--bg-image);
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .login-container {
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 50px 60px;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      width: 400px;
-      max-width: 90%;
-      text-align: center;
-    }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 50px 60px;
+            border-radius: var(--radius);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            max-width: 90%;
+            text-align: center;
+        }
 
-    h2 {
-      color: var(--primary-color);
-      margin-bottom: 30px;
-      font-size: 24px;
-    }
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
 
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: var(--primary-color);
-    }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
 
-    input[type="text"] {
-      border: 2px solid var(--input-border);
-      border-radius: var(--radius);
-      padding: 10px;
-      font-size: 15px;
-      width: 100%;
-      transition: border-color 0.3s ease;
-    }
+        input[type="text"] {
+            border: 2px solid var(--input-border);
+            border-radius: var(--radius);
+            padding: 10px;
+            font-size: 15px;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
 
-    input[type="text"]:focus {
-      border-color: var(--input-focus);
-      outline: none;
-    }
+        input[type="text"]:focus {
+            border-color: var(--input-focus);
+            outline: none;
+        }
 
-    #name { width: 100%; height: 36px; }
-    #height { width: 90%; height: 30px; }
-    #weight { width: 85%; height: 28px; }
+        #name {
+            width: 100%;
+            height: 36px;
+        }
 
-    button {
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      padding: 12px 24px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
-    }
+        #height {
+            width: 90%;
+            height: 30px;
+        }
 
-    button:hover {
-      background-color: var(--input-focus);
-    }
-  </style>
+        #weight {
+            width: 85%;
+            height: 28px;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--input-focus);
+        }
+    </style>
 </head>
+
 <body>
-  <div class="login-container">
-    <h2>Welcome to Diet App</h2>
-    <form>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Enter your name" />
-      </div>
-      <div class="form-group">
-        <label for="height">Height</label>
-        <input type="text" id="height" placeholder="Enter your height (cm)" />
-      </div>
-      <div class="form-group">
-        <label for="weight">Weight</label>
-        <input type="text" id="weight" placeholder="Enter your weight (kg)" />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
+    <div class="login-container">
+        <h2>Welcome to Diet App</h2>
+        <form method="POST" action="/food">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" />
+            </div>
+            <div class="form-group">
+                <label for="height">Height</label>
+                <input type="text" id="height" name="height" placeholder="Enter your height (cm)" />
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="text" id="weight" name="weight" placeholder="Enter your weight (kg)" />
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
+
 </html>
